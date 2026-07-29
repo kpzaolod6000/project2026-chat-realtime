@@ -1,0 +1,10 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Build scripts blocked by pnpm 10 and deliberately left unbuilt.
+# sharp and unrs-resolver ship prebuilt binaries, so skipping their
+# postinstall is safe. Added by create-next-app for apps/web.
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver

@@ -44,10 +44,10 @@ v0.3 is the milestone that matters most. Every architectural assumption in this 
 
 ## 1. Monorepo scaffold — `feat/monorepo-scaffold`
 
-- [ ] 1.1 Initialize pnpm workspace with turbo.json task graph (build, lint, typecheck, test)
-- [ ] 1.2 Create apps/web with Next.js App Router + TypeScript, port 3000
-- [ ] 1.3 Create apps/server with Fastify + TypeScript, port 3001, no React dependencies
-- [ ] 1.4 Create packages/shared with types, zod schemas, and constants
+- [x] 1.1 Initialize pnpm workspace with turbo.json task graph (build, lint, typecheck, test)
+- [x] 1.2 Create apps/web with Next.js App Router + TypeScript, port 3000
+- [x] 1.3 Create apps/server with Fastify + TypeScript, port 3001, no React dependencies
+- [x] 1.4 Create packages/shared with types, zod schemas, and constants
 - [ ] 1.5 Create packages/database with the Prisma workspace
 - [ ] 1.6 Configure shared ESLint, TypeScript, and Prettier presets consumed by every package
 - [ ] 1.7 Add Tailwind CSS and shadcn/ui to apps/web with base theme tokens

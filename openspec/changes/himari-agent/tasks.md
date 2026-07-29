@@ -27,23 +27,24 @@ Continues the release ladder from `project-foundation`. Same rules: one branch p
 - [ ] 16.3 Verify the current LiveKit Agents documentation for the chosen runtime; do not build from remembered APIs
 
 **Worker foundation**
-- [ ] 16.4 Scaffold the agent worker as a separate deployable with its own Dockerfile and Compose service
-- [ ] 16.5 Implement the agent LiveKit identity and token minting in apps/server, distinguishable from any human user id
-- [ ] 16.6 Implement worker connection to a room, publishing an audio track and subscribing to participant audio
-- [ ] 16.7 **Checkpoint:** the worker joins a room and appears as a participant, silent. Proves identity, token, and connection in isolation from the speech pipeline
+- [ ] 16.4 Declare the `STTProvider`, `LLMProvider`, and `TTSProvider` Strategy interfaces in packages/shared, shaped by the providers chosen in 16.2
+- [ ] 16.5 Scaffold the agent worker as a separate deployable with its own Dockerfile and Compose service
+- [ ] 16.6 Implement the agent LiveKit identity and token minting in apps/server, distinguishable from any human user id
+- [ ] 16.7 Implement worker connection to a room, publishing an audio track and subscribing to participant audio
+- [ ] 16.8 **Checkpoint:** the worker joins a room and appears as a participant, silent. Proves identity, token, and connection in isolation from the speech pipeline
 
 **Lifecycle**
-- [ ] 16.8 Implement the state machine: Sleeping, Waking, Active, Dismissing
-- [ ] 16.9 Extend the `RoomMessage` union in packages/shared with agent-state variants
-- [ ] 16.10 Wire `/himari getup` to worker allocation through the existing command parser
-- [ ] 16.11 Wire `/himari sleep` to dismissal and worker release
-- [ ] 16.12 Reject `getup` when already present and `sleep` when absent, with local-only replies
-- [ ] 16.13 Fail to `Sleeping` with an explicit message when allocation exceeds 10 seconds
-- [ ] 16.14 Release the worker when the room transitions to `ending`
-- [ ] 16.15 Broadcast agent state on change, and re-broadcast for late joiners within 2 seconds
-- [ ] 16.16 Render the agent participant entry with a dismiss action instead of mute and remove
-- [ ] 16.17 Unit-test every state transition, including the rejected ones
-- [ ] 16.18 **Checkpoint:** summon and dismiss repeatedly without leaking workers
+- [ ] 16.9 Implement the state machine: Sleeping, Waking, Active, Dismissing
+- [ ] 16.10 Extend the `RoomMessage` union in packages/shared with agent-state variants
+- [ ] 16.11 Wire `/himari getup` to worker allocation through the existing command parser
+- [ ] 16.12 Wire `/himari sleep` to dismissal and worker release
+- [ ] 16.13 Reject `getup` when already present and `sleep` when absent, with local-only replies
+- [ ] 16.14 Fail to `Sleeping` with an explicit message when allocation exceeds 10 seconds
+- [ ] 16.15 Release the worker when the room transitions to `ending`
+- [ ] 16.16 Broadcast agent state on change, and re-broadcast for late joiners within 2 seconds
+- [ ] 16.17 Render the agent participant entry with a dismiss action instead of mute and remove
+- [ ] 16.18 Unit-test every state transition, including the rejected ones
+- [ ] 16.19 **Checkpoint:** summon and dismiss repeatedly without leaking workers
 
 ## 17. Speech pipeline — `feat/agent-speech`
 

@@ -229,8 +229,9 @@ Reliability per type: `chat` and `history_*` are sent reliably; `reaction` and `
 **Rationale:** Abstracts persistence, enables in-memory fakes in tests, satisfies Dependency Inversion.
 
 ### Strategy pattern for media providers
-**Chosen:** `TTSProvider`, `STTProvider`, `LLMProvider` interfaces defined in `packages/shared`, with no implementations in v1
-**Rationale:** Future-proofing for the Himari agent. Interfaces are declared now so v1 code never hard-codes a provider assumption. Implementations land in the `himari-agent` change.
+**Chosen:** `TTSProvider`, `STTProvider`, `LLMProvider` interfaces live in `packages/shared`, but are declared in the `himari-agent` change (task 16.4), not in v1
+**Rationale:** An earlier draft declared them during the foundation scaffold. Revised, because no v1 code consumes them: the stated benefit — "v1 code never hard-codes a provider assumption" — needs a v1 consumer to be real, and there is none. Declaring an interface six releases before its first implementation means guessing the shape of an API without the information that task 16.2 produces. The seam that v1 genuinely provides is the package boundary itself, not the interfaces inside it.
+**Consequence:** `packages/shared` ships without a `providers/` directory until v0.7.
 
 ### Testing strategy
 **Chosen:** Vitest for unit and integration tests, Playwright for end-to-end, in-memory repository fakes for service tests
@@ -434,7 +435,7 @@ None of these cost anything now; all of them are expensive to retrofit.
 | Repository interfaces | Test doubles | Swapping the persistence layer, adding caching, read replicas |
 | Session in a cookie, not server memory | Cross-origin requirement | API instances are stateless and horizontally scalable |
 | Prometheus from day one | Load testing is meaningless without it | Every trigger below is a metric query |
-| Provider Strategy interfaces | The Himari agent | Swapping LLM, STT, TTS without touching agent logic |
+| `packages/shared` as a compiled, consumable package | Both apps need one source of truth for contracts | The Provider Strategy interfaces land here in task 16.4, with no restructuring |
 | Typed data channel envelope | One parser | New message types, including the agent's, without a new channel |
 
 ### Ordered growth, each step gated on a signal
