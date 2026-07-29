@@ -1,0 +1,105 @@
+schema: spec-driven
+
+context: |
+  ## Product
+
+  Google Meet-like real-time video conferencing platform built on self-hosted
+  LiveKit. Long-term goal: host "Himari", an AI agent with a realtime LLM,
+  tools, RAG, an interactive anime avatar and a cloned voice. v1 delivers the
+  human-to-human meeting platform only; the agent is a separate change.
+
+  ## Tech stack
+
+  - Monorepo: pnpm workspaces + Turborepo
+  - apps/web: Next.js (App Router), UI only, port 3000
+  - apps/server: Fastify, JSON API only, port 3001
+  - packages/shared: types, zod schemas, constants
+  - packages/database: Prisma schema, migrations, repository implementations
+  - UI: Tailwind CSS + shadcn/ui
+  - Data: PostgreSQL + Prisma
+  - Realtime: LiveKit self-hosted (LiveKit Server + Redis + Coturn) via Docker Compose
+  - Language: TypeScript everywhere
+
+  ## Hard constraints
+
+  - Free and open-source tooling only. No paid SaaS in the critical path.
+  - Source code, identifiers, comments and OpenSpec artifacts: English.
+  - End-user documentation under docs/: Spanish.
+  - Conversation with the user: Spanish.
+  - Comments are sparse. Code should read without them; comment only non-obvious
+    reasoning, never restate what the code does.
+
+  ## Architecture principles
+
+  SOLID throughout. Named design patterns already assigned:
+
+  - State      -> meeting lifecycle (MeetingService)
+  - Command    -> room actions and, later, avatar gestures
+  - Strategy   -> swappable providers (TTS, STT, LLM) behind interfaces
+  - Observer   -> RoomEventBus for participant and data-channel events
+  - Repository -> data access abstraction over Prisma
+  - Pipeline   -> future agent processing chain
+
+  Real-time UX is a first-class requirement, not polish. Perceived latency
+  budgets are documented in the project-foundation design.
+
+  ## Two mechanisms for acting on a room
+
+  Distinguish them explicitly in every design:
+
+  - Server API (RoomServiceClient, backend-only, authoritative): mute, remove
+    participant, update permissions. The client cannot bypass it.
+  - Data channel (peer to peer, non-authoritative): chat, reactions, hand raise,
+    history relay. Any client can forge these payloads; never trust them for
+    authorization.
+
+  ## Working agreement
+
+  - Mentor mode is the default. Explain what, how and why. Do NOT write
+    application code. Creating or updating OpenSpec artifacts and documentation
+    is always allowed and never requires permission.
+
+  - The word "implementalo" is the only thing that unblocks writing application
+    code. Its exact semantics:
+      * Scope: the current task group, in full. Not one task, not the whole
+        milestone. If no group is obviously current, ask which one before
+        writing anything.
+      * Behaviour: write the entire group without stopping to explain. No
+        preamble, no step-by-step narration, no confirmation prompts between
+        tasks.
+      * Checkboxes: tick each task in tasks.md as it is completed.
+      * On finishing: report which files changed, which decisions were not
+        obvious and why, and anything that deviated from the spec. Then stop.
+      * Mentor mode resumes automatically at the end of the group. The
+        permission does not carry over to the next group.
+      * If a task cannot be completed, finish every other task in the group and
+        say explicitly what was left and why. Never silently narrow the scope.
+
+  - Work advances through the release ladder in tasks.md. Each milestone is a
+    runnable, demonstrable state with an acceptance check. Do not begin a
+    milestone while the previous one's acceptance check has not passed.
+  - Single git repository. The monorepo is one repo containing every app and
+    package; apps/web and apps/server are separate deployables, NOT separate
+    repositories.
+  - One git branch per feature, named after the task group: feat/<group-slug>.
+  - The user owns every git operation: init, branch, add, commit, push, pull,
+    merge, rebase, tag, and any remote configuration. Never run any of them.
+    Report what changed and let the user stage and commit it.
+  - Advance feature by feature, in small steps, confirming direction.
+  - Every completed change ships its documentation under docs/ (Spanish).
+
+rules:
+  proposal:
+    - State explicitly which capabilities are added versus modified
+    - Every deferred idea must appear as an explicit Non-Goal with a one-line reason
+  design:
+    - Record rejected alternatives, not only the chosen option
+    - Cite the source for any numeric threshold or latency budget
+    - Name the design pattern and the module it applies to
+  specs:
+    - Every requirement needs at least one failure or edge-case scenario, not only the happy path
+    - Never write a requirement that no task implements
+  tasks:
+    - Break tasks into chunks of max 2 hours
+    - Group tasks so that each group maps to a single git branch
+    - Include testing and documentation tasks, never only implementation
