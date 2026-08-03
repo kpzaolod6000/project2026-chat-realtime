@@ -23,9 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // `dark` is hard-coded rather than driven by prefers-color-scheme: a
+    // meeting UI is video first, and light chrome around a video grid
+    // fights the content. The light tokens stay defined in globals.css so
+    // a theme switcher is a change to this attribute, nothing more.
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

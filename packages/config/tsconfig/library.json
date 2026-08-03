@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "@chat/config library",
+  "extends": "./node.json",
+
+  // For packages consumed across the workspace. `declarationMap` makes
+  // "go to definition" in a consumer land on src/*.ts rather than the
+  // generated dist/*.d.ts.
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true
+  }
+}

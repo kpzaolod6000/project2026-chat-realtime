@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "@chat/config next",
+  "extends": "./base.json",
+
+  // Extends the same base as the Node preset, so `strict` and friends
+  // cannot drift between the UI and the API, then diverges on everything
+  // the bundler dictates: DOM libs, JSX, bundler resolution, no emit.
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "plugins": [{ "name": "next" }]
+  }
+}

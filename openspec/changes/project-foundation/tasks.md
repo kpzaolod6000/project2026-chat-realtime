@@ -49,11 +49,11 @@ v0.3 is the milestone that matters most. Every architectural assumption in this 
 - [x] 1.3 Create apps/server with Fastify + TypeScript, port 3001, no React dependencies
 - [x] 1.4 Create packages/shared with types, zod schemas, and constants
 - [x] 1.5 Create packages/database with the Prisma workspace
-- [ ] 1.6 Configure shared ESLint, TypeScript, and Prettier presets consumed by every package
-- [ ] 1.7 Add Tailwind CSS and shadcn/ui to apps/web with base theme tokens
-- [ ] 1.8 Add .gitignore, .env.example with every required variable documented, and README.md
-- [ ] 1.9 Add env var validation at startup in both apps, failing fast on missing values
-- [ ] 1.10 Set up local HTTPS with mkcert for both apps, required by `Secure` cross-site cookies
+- [x] 1.6 Configure shared ESLint, TypeScript, and Prettier presets consumed by every package
+- [x] 1.7 Add Tailwind CSS and shadcn/ui to apps/web with base theme tokens
+- [x] 1.8 Add .gitignore, .env.example with every required variable documented, and README.md
+- [x] 1.9 Add env var validation at startup in both apps, failing fast on missing values
+- [x] 1.10 Set up local HTTPS with mkcert for both apps, required by `Secure` cross-site cookies
 
 ## 2. LiveKit self-hosted infrastructure — `feat/livekit-infra`
 

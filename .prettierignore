@@ -1,0 +1,22 @@
+# Generated or vendored output. Formatting it produces noise in diffs and
+# fights whatever tool regenerates it.
+node_modules/
+dist/
+build/
+.next/
+out/
+.turbo/
+coverage/
+packages/database/src/generated/
+pnpm-lock.yaml
+*.tsbuildinfo
+next-env.d.ts
+
+# Planning artifacts. Hand-aligned tables and ASCII diagrams carry meaning
+# here, and reformatting them buries the substantive edit of a change under
+# whitespace. Prose docs under docs/ are formatted normally.
+openspec/
+
+# Tool state, not source.
+.claude/
+.opencode/

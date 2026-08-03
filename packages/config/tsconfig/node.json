@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "@chat/config node",
+  "extends": "./base.json",
+
+  // No "dom" in `lib`: every package extending this one runs on Node or
+  // is shared with the browser through plain data only. Reaching for a
+  // DOM global must be a compile error, not a runtime crash.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "sourceMap": true
+  }
+}

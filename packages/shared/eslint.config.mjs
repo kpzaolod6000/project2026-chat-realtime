@@ -1,9 +1,8 @@
-import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+import node from "@chat/config/eslint/node";
 
-// Replaced by the shared preset from the repo root in task 1.6.
-export default tseslint.config(
+// No type-aware rules here: this package is types, zod schemas and
+// constants, with no async surface for the typed rules to act on.
+export default [
   { ignores: ["dist/**"] },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-);
+  ...node({ tsconfigRootDir: import.meta.dirname }),
+];

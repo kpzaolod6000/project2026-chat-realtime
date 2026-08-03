@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "@chat/config base",
+
+  // Nothing path-valued belongs in this file. A relative path inside an
+  // extended config resolves against the file that declares it, which is
+  // this directory - not the consuming package. So `rootDir`, `outDir`,
+  // `paths`, `include` and `exclude` stay in each package's own tsconfig.
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  }
+}

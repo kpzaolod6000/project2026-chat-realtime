@@ -1,20 +1,9 @@
 {
+  "extends": "@chat/config/tsconfig/library.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022"],
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
     "rootDir": "src",
     "outDir": "dist",
-    "strict": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
+
     // The Prisma 7 generator emits TypeScript whose relative imports carry
     // explicit .ts extensions. These two flags let tsc accept those imports
     // and rewrite them to .js on emit, so dist/ is runnable by plain node.
