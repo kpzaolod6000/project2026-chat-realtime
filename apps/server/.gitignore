@@ -1,0 +1,12 @@
+# dependencies
+node_modules
+
+# build output
+dist
+*.tsbuildinfo
+
+# turborepo task logs and local cache
+.turbo
+
+# env files
+.env*

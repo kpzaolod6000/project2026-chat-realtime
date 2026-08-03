@@ -1,0 +1,15 @@
+// Models are defined in tasks 3.1 and 3.2. This task only wires the
+// generator, the driver adapter, and the build pipeline.
+
+generator client {
+  provider = "prisma-client"
+  // Emitted inside src/ so this package's own tsc compiles it into dist/.
+  // The v7 generator emits TypeScript source, and apps/server runs plain
+  // `node dist/index.js`, which cannot load TypeScript.
+  output = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  // In Prisma 7 the connection string lives in prisma.config.ts, not here.
+}

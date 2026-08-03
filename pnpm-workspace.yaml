@@ -2,9 +2,20 @@ packages:
   - "apps/*"
   - "packages/*"
 
-# Build scripts blocked by pnpm 10 and deliberately left unbuilt.
-# sharp and unrs-resolver ship prebuilt binaries, so skipping their
-# postinstall is safe. Added by create-next-app for apps/web.
+# pnpm 10 blocks every postinstall script by default. Each entry below is
+# an explicit decision, not a default.
+
+# Needed: these postinstalls place the query engine and CLI binaries that
+# `prisma generate` and `prisma migrate` execute.
+onlyBuiltDependencies:
+  - "@prisma/engines"
+  - prisma
+
+# Safe to skip: both ship prebuilt platform binaries as optional
+# dependencies, so their postinstall has nothing to do here.
+#   sharp, unrs-resolver -> apps/web (create-next-app)
+#   esbuild              -> tsx, in apps/server
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+  - esbuild
